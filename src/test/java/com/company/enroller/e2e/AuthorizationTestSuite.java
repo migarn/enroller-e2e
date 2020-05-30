@@ -35,7 +35,14 @@ public class AuthorizationTestSuite {
 	
 	@Test
 	public void LoginInAndOut() throws Exception {
-		fail("Not implemented yet!");
+	    driver.get("http://localhost:8088/");
+	    driver.findElement(By.xpath("//input[@type='text']")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).clear();
+	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("michal");
+	    driver.findElement(By.xpath("//input[@type='password']")).clear();
+	    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("haslo");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.linkText("Wyloguj")).click();
 	}
 
 	@Test
@@ -45,7 +52,53 @@ public class AuthorizationTestSuite {
 
 	@Test
 	public void RegisterExistingUser() throws Exception {
-		fail("Not implemented yet!");
+	    driver.get("http://localhost:8088/");
+	    driver.findElement(By.xpath("//div[@id='app']/div/button[2]")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).clear();
+	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("michal");
+	    driver.findElement(By.xpath("//input[@type='password']")).clear();
+	    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("haslo");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	}
+	
+	@Test
+	public void LogInNonExistingUser() throws Exception {
+	    driver.get("http://localhost:8088/");
+	    driver.findElement(By.xpath("//input[@type='text']")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).clear();
+	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("madzia");
+	    driver.findElement(By.xpath("//input[@type='password']")).clear();
+	    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("haslo");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	}
+	
+	@Test
+	public void LogInWithoutPassword() throws Exception {
+	    driver.get("http://localhost:8088/");
+	    driver.findElement(By.xpath("//input[@type='text']")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).clear();
+	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("michal");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	}
+	
+	@Test
+	public void LogInAddMeetingAndLogOut() throws Exception {
+	    driver.get("http://localhost:8088/");
+	    driver.findElement(By.xpath("//input[@type='text']")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).clear();
+	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("michal");
+	    driver.findElement(By.xpath("//input[@type='password']")).clear();
+	    driver.findElement(By.xpath("//input[@type='password']")).sendKeys("haslo");
+	    driver.findElement(By.xpath("//button[@type='submit']")).click();
+	    driver.findElement(By.xpath("//div[@id='app']/div/div/div/button")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).click();
+	    driver.findElement(By.xpath("//input[@type='text']")).clear();
+	    driver.findElement(By.xpath("//input[@type='text']")).sendKeys("SPotkanie");
+	    driver.findElement(By.xpath("//div[@id='app']/div/div/div/form/textarea")).clear();
+	    driver.findElement(By.xpath("//div[@id='app']/div/div/div/form/textarea")).sendKeys("opis");
+	    driver.findElement(By.xpath("//div[@id='app']/div/div/div/form/button")).click();
+	    driver.findElement(By.linkText("Wyloguj")).click();
 	}
 
 	@After
